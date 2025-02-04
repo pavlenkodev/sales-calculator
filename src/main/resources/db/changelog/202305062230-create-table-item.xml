@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create.table.item" author="dpavlenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="calculator" tableName="item"/>
+            </not>
+        </preConditions>
+        <createTable schemaName="calculator" tableName="item" remarks="Товар">
+            <column name="id" type="serial" remarks="Уникальный идентификатор">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar" remarks="Наименование товара">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="varchar" remarks="Ссылка на товар"/>
+            <column name="attachment_id" type="integer" remarks="Идентификатор вложения">
+                <constraints foreignKeyName="item_attachment_id_fk"
+                             referencedTableSchemaName="calculator"
+                             referencedTableName="attachment"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+            <column name="cost_rub" type="double" remarks="Стоимость товара в рублях">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost_yuan" type="double" remarks="Стоимость товара в рублях"/>
+            <column name="cost_with_delivery_rub" type="double" remarks="Стоимость вместе с доставкой в рублях"/>
+            <column name="cost_with_delivery_yuan" type="double" remarks="Стоимость вместе с доставкой в юанях"/>
+            <column name="total_amount" type="integer" remarks="Общее количество">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_at_home" type="integer" remarks="Количество товара дома"/>
+            <column name="total_in_stock" type="integer" remarks="Количество на складе"/>
+            <column name="weight" type="double" remarks="Вес"/>
+            <column name="create_dt" type="timestamp" remarks="Дата создания/Дата первой закупки">
+                <constraints nullable="false"/>
+            </column>
+            <column name="change_dt" type="timestamp" remarks="Дата изменения товара">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="item.attachment_id.index.create" author="dpavlenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists schemaName="calculator" tableName="item" indexName="idx_item_attachment_id"/>
+            </not>
+        </preConditions>
+        <createIndex schemaName="calculator" tableName="item" indexName="idx_item_attachment_id" unique="false">
+            <column name="attachment_id"/>
+        </createIndex>
+        <rollback>
+            <dropIndex schemaName="calculator" tableName="item" indexName="idx_item_attachment_id"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

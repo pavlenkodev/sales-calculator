@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="sales_info.table.create" author="dpavlenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="calculator" tableName="sales_info"/>
+            </not>
+        </preConditions>
+        <createTable schemaName="calculator" tableName="sales_info">
+            <column name="id" type="serial" remarks="Уникальный идентификатор">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="count" type="integer" remarks="Количество проданного">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost" type="double" remarks="Цена продажи">
+                <constraints nullable="false"/>
+            </column>
+            <column name="commission_ke" type="double" remarks="Комиссия маркетплейса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="commission" type="double" remarks="Налог ИП">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_dt" type="timestamp" remarks="Дата продажи">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

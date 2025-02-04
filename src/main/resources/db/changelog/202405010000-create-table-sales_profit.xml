@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="sales_profit.table.create" author="dpavlenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="calculator" tableName="sales_profit"/>
+            </not>
+        </preConditions>
+        <createTable schemaName="calculator" tableName="sales_profit" remarks="Прибыль">
+            <column name="id" type="serial" remarks="Уникальный идентификатор">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="total_profit" type="double" remarks="Итоговая прибыль">
+                <constraints nullable="false"/>
+            </column>
+            <column name="period_begin_dt" type="datetime" remarks="Дата начала периода">
+                <constraints nullable="false"/>
+            </column>
+            <column name="period_end_dt" type="datetime" remarks="Дата конца периода">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable schemaName="calculator" tableName="sales_profit"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
