@@ -2,6 +2,7 @@ package ru.dream_store_kzn.salescalculator.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 
 /**
@@ -18,7 +19,7 @@ public class CellUtils {
      */
     public static String getAsString(Cell cell) {
         if (cell == null) {
-            return "";
+            return StringUtils.EMPTY;
         }
         return cell.getStringCellValue();
     }
