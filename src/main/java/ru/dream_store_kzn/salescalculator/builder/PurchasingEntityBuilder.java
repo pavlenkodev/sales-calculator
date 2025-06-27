@@ -19,7 +19,7 @@ public class PurchasingEntityBuilder {
 
     public static PurchasingEntity buildEdit(PurchasingModel model) {
         var entity = buildCommon(model);
-        entity.setId(model.getId());
+        entity.setId(Long.valueOf(model.getId()));
 
         return entity;
     }

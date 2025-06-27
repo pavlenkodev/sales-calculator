@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/sales-calculator
+    url: jdbc:postgresql://localhost:5432/sales_calculator
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

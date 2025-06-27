@@ -2,13 +2,11 @@ package ru.dream_store_kzn.salescalculator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.dream_store_kzn.salescalculator.builder.SalesProfitEntityBuilder;
 import ru.dream_store_kzn.salescalculator.exception.SalesCalculatorException;
 import ru.dream_store_kzn.salescalculator.model.ProfitModel;
 import ru.dream_store_kzn.salescalculator.model.SaleItemModel;
 import ru.dream_store_kzn.salescalculator.parser.WorkbookParser;
 import ru.dream_store_kzn.salescalculator.properties.SalesReportProperties;
-import ru.dream_store_kzn.salescalculator.repository.SalesProfitRepository;
 import ru.dream_store_kzn.salescalculator.service.ProfitService;
 
 import java.io.InputStream;
@@ -23,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProfitServiceImpl implements ProfitService {
 
-    private final SalesProfitRepository salesProfitRepository;
+    //    private final SalesProfitRepository salesProfitRepository;
     private final SalesReportProperties salesReportProperties;
     private final WorkbookParser workbookParser;
 
@@ -56,7 +54,7 @@ public class ProfitServiceImpl implements ProfitService {
             }
         });
 
-        salesProfitRepository.save(SalesProfitEntityBuilder.build(profitModel));
+//        salesProfitRepository.save(SalesProfitEntityBuilder.build(profitModel));
 
         return profitModel;
     }
