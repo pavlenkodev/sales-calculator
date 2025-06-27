@@ -20,9 +20,4 @@ public class ProfitRestImpl implements ProfitRest {
     public ProfitModel calculate(@NotNull MultipartFile salesReport,  MultipartFile paidStorageReport) {
         return profitService.calculateProfit(salesReport.getInputStream(), paidStorageReport.getInputStream());
     }
-
-    @Override
-    public String test() {
-        return "hello world";
-    }
 }
