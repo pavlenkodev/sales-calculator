@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+
 jaxrs:
   swagger:
     enabled: true
@@ -18,3 +22,6 @@ sales:
     price-cell-number: 13
     promo-cell-number: 14
     net-cost-cell-number: 15
+
+topic:
+   sales-report-profit: sales-report-profit
