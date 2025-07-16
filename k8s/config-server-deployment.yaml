@@ -1,0 +1,15 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: edu-config-sever
+#
+#spec:
+#  selector:
+#  template:
+#    spec:
+#      containers:
+#        - name: edu-config-sever
+#          image: 192.168.49.1:5000/edu/config-server:24.1.1
+#          ports:
+#            -containerPort:
+# template
